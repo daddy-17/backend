@@ -2,24 +2,17 @@ services:
   - type: web
     name: datamart-backend
     env: python3
-    plan: free # Or your preferred plan
+    plan: free # Or upgrade if needed
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app"
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: datamart-db
-          property: connectionString
+        value: postgresql://datashop_postgres_user:Tyd5ir9gCbdAIG2aJUBnLetML8RQIMCt@dpg-d4f4uk6uk2gs73f3q5lg-a.oregon-postgres.render.com/datashop_postgres
       - key: JWT_SECRET
-        generateValue: true # Let Render generate a secure secret
+        generateValue: true
       - key: PAYSTACK_SECRET_KEY
-        sync: false
+        sync: false # Add your actual key in Render dashboard
       - key: DATAMART_API_KEY
-        sync: false
+        sync: false # Add your actual key in Render dashboard
       - key: FRONTEND_URL
-        value: https://your-frontend-domain.com # Change this
-
-  - type: psql
-    name: datamart-db
-    plan: free # Or your preferred plan
-    ipAllowList: [] # Allows access from anywhere, or restrict to your services
+        value: https://datahubgh.pages.dev # Your Cloudflare frontend URL
