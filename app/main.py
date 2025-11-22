@@ -11,7 +11,7 @@ app = FastAPI(title="DataMart Store API")
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Replace with frontend URL in production
+    allow_origins=["https://datahubgh.pages.dev/"],  # Replace with frontend URL in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
